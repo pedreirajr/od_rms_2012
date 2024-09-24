@@ -16,7 +16,7 @@ blocos_indices <- which(grepl("^BLOCO", campos$...1))
 nomes_blocos <- campos$...1[blocos_indices]
 
 # Cria uma lista para armazenar os dataframes de cada bloco
-lista_blocos <- list()
+descricao_campos <- list()
 
 # Loop para separar cada bloco em um dataframe
 for (i in seq_along(blocos_indices)) {
@@ -31,7 +31,7 @@ for (i in seq_along(blocos_indices)) {
   colnames(bloco) <- c("campo", "descricao")
   
   # Adiciona o dataframe à lista com o nome do bloco
-  lista_blocos[[nomes_blocos[i]]] <- bloco
+  descricao_campos[[nomes_blocos[i]]] <- bloco
 }
 
 #
@@ -50,7 +50,7 @@ blocos_indices <- which(grepl("^BLOCO", cods$...1))
 nomes_blocos <- cods$...1[blocos_indices]
 
 # Cria uma lista para armazenar os blocos e suas variáveis
-lista_cods <- list()
+descricao_codigos <- list()
 
 # Loop para separar cada bloco
 for (i in seq_along(blocos_indices)) {
@@ -85,11 +85,11 @@ for (i in seq_along(blocos_indices)) {
   }
   
   # Adiciona a lista de variáveis ao bloco correspondente na lista aninhada
-  lista_cods[[nomes_blocos[i]]] <- lista_variaveis
+  descricao_codigos[[nomes_blocos[i]]] <- lista_variaveis
 }
 
 # Exibe a estrutura da lista aninhada
-str(lista_cods)
+
 
 # (3) Salvando as listas com os campos e códigos para dicionário -------------
 output_dir_dics <- "data/dics"
@@ -97,6 +97,5 @@ if (!dir.exists(output_dir_dics)) {
   dir.create(output_dir_dics, recursive = T) 
 }
 
-save(lista_blocos, file = 'data/dics/descricao_campos.rda')
-save(lista_cods, file = 'data/dics/descricao_codigos.rda')
-
+save(descricao_campos, file = 'data/dics/descricao_campos.rda')
+save(descricao_codigos, file = 'data/dics/descricao_codigos.rda')
