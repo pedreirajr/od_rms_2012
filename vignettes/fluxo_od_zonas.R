@@ -43,4 +43,5 @@ ggplot() +
     plot.subtitle = element_text(hjust = 0.5)
   )
 
+ggsave('vignettes/fluxos_acima2000.jpg', dpi = 300)
 
