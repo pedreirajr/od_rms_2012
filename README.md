@@ -8,11 +8,15 @@ Os 3 arquivos para processamento foram extraídos dos seguintes diretórios do a
 
 -   **Dados tabulares**:
 
+```         
 Pesquisa OD/PESQUISA O-D NA RMS/Banco de dados- rev.2/Banco de Dados OD Domiciliar rev 2
+```
 
 -   **Dados geográficos**:
 
+```         
 Pesquisa OD/PESQUISA O-D NA RMS/Banco de dados dos Produtos consolidados/Arquivos_kmz_do_zoneamento
+```
 
 O primeiro diretório contém a pasta de trabalho do Excel "Banco de Dados OD Domiciliar rev 2.xlsx". Esta pasta de trabalho é formada por 6 planilhas com tabelas de respostas dos questionários ("Banco Domicílios", "Banco Moradores", "Banco Atividades", "Banco de Viagens", "Banco Segurança" e "Banco de Viagens (matriz link)"), 1 planiha contendo o descritivo dos campos destas tabelas ("descrição dos campos") e 1 planilha contendo a codificação utilizada em alguns destes campos ("códigos").
 
