@@ -1,39 +1,28 @@
-library(sf); library(tidyverse)
+library(tidyverse); library(sf)
 
-# Carrega as bases de dados
+# Carregamento das bases de dados
 load("data/tables/tabelas_dados.rda")
 load("data/geo/zonas_rms_pol_crs4674.rda")
 load("data/geo/zonas_rms_pts_crs4674.rda")
-load("data/geo/subzonas_rms_pol_crs4674.rda")
 
-# Armazena base de dados de viagens e arquivos de polígonos das zonas e subzonas
-# em 3 objetos para processamento
+# Armazenando as bases de dados em objetos para processamento
 viagens <- tabelas_dados[[6]]
 pol_zon <- zonas_rms_pol_crs4674
-pol_subzon <- subzonas_rms_pol_crs4674
-
-# Confere quantidade de zonas únicas na base de viagens que existem no arquivo
-# de polígonos
-zonas_unicas <- union(unique(viagens$Z_O),unique(viagens$Z_O))
-length(zonas_unicas) # 251
-sum(zonas_unicas %in% pol_zon$Name) # 217 zonas presentes no arquivo de polígonos
-
-# Confere quantidade de subzonas únicas na base de viagens que existem no arquivo
-# de polígonos
-subzonas_unicas <- union(unique(viagens$ZONAsub_O),unique(viagens$ZONAsub_D))
-length(subzonas_unicas) # 842
-sum(subzonas_unicas %in% pol_subzon$Name) # 802 subzonas presentes no arquivo de polígonos
+pts_zon <- zonas_rms_pts_crs4674
 
 # Produzindo dados de fluxos de viagens 
-pts_zon <- zonas_rms_pts_crs4674
+## Obtendo coordenadas x,y dos centroides das zonas
 pts_zon <- cbind(pts_zon,st_coordinates(pts_zon))
 
+## Tabela com fluxos OD
 flux <- viagens %>% 
   group_by(Z_O,Z_D) %>% 
   summarize(n = sum(FATOR_EXP, na.rm = T)) %>% 
+  ## Adicionando as coordenadas das zonas de origem
   left_join(pts_zon %>% st_drop_geometry() %>% select(Name,X,Y),
             by = join_by(Z_O == Name)) %>% 
   rename('O_X' = 'X', 'O_Y' = 'Y') %>% 
+  ## Adicionando as coordenadas das zonas de destino
   left_join(pts_zon %>% st_drop_geometry() %>% select(Name,X,Y),
             by = join_by(Z_D == Name)) %>% 
   rename('D_X' = 'X', 'D_Y' = 'Y')
@@ -42,7 +31,7 @@ flux <- viagens %>%
 ggplot() +
   geom_sf(data = pol_zon, fill = "#353941", color = "white", linewidth = 0.05) +
   geom_curve(data = flux %>% filter(!is.na(Z_O) & !is.na(Z_D) &
-                                                 Z_O != Z_D & n >= 2000),
+                                      Z_O != Z_D & n >= 2000),
              aes(x = O_X, y = O_Y,
                  xend = D_X, yend = D_Y,
                  linewidth = n),
