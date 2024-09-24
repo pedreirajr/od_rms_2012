@@ -20,24 +20,4 @@ O segundo diretório contém os arquivos geográficos compactados "Zonas OD Salv
 
 Após processamento no R (ver diretório `R` deste repositório com os códigos), os arquivos finais foram salvos na pasta `data`, contendo a descrição dos campos e códigos para elaboração dos dicionários (em `data/dics`), os arquivos geográficos de zonas e subzonas de tráfego (`data/geo`) e as tabelas com as respostas aos questionários da entrevista domiciliar (`data/tables`). Em todos os casos, os arquivos foram salvos no formato .rda para R.
 
-Para o dicionário foram salvas dois arquivos (`descricao_campos.rda` e `descricao_codigos.rda`). No primeiro, há uma lista unidimensional de tamanho 6, contendo 6 tibbles com os nomes dos campos (colunas) e suas respectivas descrições para as bases de dados mencionadas anteriormente. O segundo arquivo contém uma lista bidimensional, onde a primeira dimensão referencia a base de dados escolhida e a segunda dimensão indica a variável que se quer entender a codificação. Por exemplo, a chamada `descricao_codigos[[1]][[2]]` retornará um tibble relativo à explicação dos códigos da variável "Condição de Moradia" da base de dados "Banco Domicílios". O resultado é o seguinte tibble:
-
-+------------+--------------+
-| codigo     | descricao    |
-+============+==============+
-| 1          | ```          |
-|            | próprio      |
-|            | ```          |
-+------------+--------------+
-| 2          | ```          |
-|            | alugado      |
-|            | ```          |
-+------------+--------------+
-| 3          | ```          |
-|            | cedido       |
-|            | ```          |
-+------------+--------------+
-| 4          | ```          |
-|            | invadido     |
-|            | ```          |
-+------------+--------------+
+Para o dicionário foram salvas dois arquivos (`descricao_campos.rda` e `descricao_codigos.rda`). No primeiro, há uma lista unidimensional de tamanho 6, contendo 6 tibbles com os nomes dos campos (colunas) e suas respectivas descrições para as bases de dados mencionadas anteriormente. O segundo arquivo contém uma lista bidimensional, onde a primeira dimensão referencia a base de dados escolhida e a segunda dimensão indica a variável que se quer entender a codificação. Por exemplo, a chamada `descricao_codigos[[1]][[2]]` retornará um tibble relativo à explicação dos códigos da variável "Condição de Moradia" [[2]] da base de dados "Banco Domicílios" [[1]].
