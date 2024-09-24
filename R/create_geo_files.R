@@ -46,6 +46,24 @@ zonas_rms_pol_crs4674 <- st_transform(zonas_rms_pol, crs = 4674)
 subzonas_rms_pts_crs4674 <- st_transform(subzonas_rms_pts, crs = 4674)
 subzonas_rms_pol_crs4674 <- st_transform(subzonas_rms_pol, crs = 4674)
 
+# Edita os nomes das ZONAS para 3 dígitos com zero à esquerda para join futuro
+# com as bases de dados tabulares
+zonas_rms_pts_crs4674 <- zonas_rms_pts_crs4674 %>% 
+  mutate(Name = ifelse(nchar(Name) == 1, paste0("00",Name),
+                       ifelse(nchar(Name) == 2, paste0("0",Name), Name))) 
+
+zonas_rms_pol_crs4674 <- zonas_rms_pol_crs4674 %>% 
+  mutate(Name = ifelse(nchar(Name) == 1, paste0("00",Name),
+                       ifelse(nchar(Name) == 2, paste0("0",Name), Name))) 
+
+# Edita os nomes das SUBZONAS, substituindo "-" por "." para join futuro
+# com as bases de dados tabulares
+subzonas_rms_pts_crs4674 <- subzonas_rms_pts_crs4674 %>% 
+  mutate(Name = gsub("- ?", ".", Name))
+subzonas_rms_pol_crs4674 <- subzonas_rms_pol_crs4674 %>% 
+  mutate(Name = gsub("- ?", ".", Name))
+
+
 # Cria subpasta de destino para os arquivos finais em CRS4674
 output_dir_geo <- "data/geo"
 if (!dir.exists(output_dir_geo)) {
