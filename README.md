@@ -2,7 +2,7 @@
 
 Este repositório disponibiliza dados tabulares e geográficos oriundos da Pesquisa de Mobilidade da Região Metropolitana de Salvador de 2012.
 
-Os dados originais foram obtidos através do download do [arquivo compactado](http://sit.infraestrutura.ba.gov.br/docs/download/publicacoes/suplog/Pesquisa_OD.rar) em formato .rar e disponibilizado pela Secretaria de Infraesturtura do Governo do Estado da Bahia. Este arquivo possui \~1,5GB de dados com múltiplas pastas e arquivos sobre a pesquisa realizada em 2012. Quando descompactado atinge \~7 GB.
+Os dados originais foram obtidos através do download do [arquivo compactado](http://sit.infraestrutura.ba.gov.br/docs/download/publicacoes/suplog/Pesquisa_OD.rar) em formato .rar disponibilizado pela Secretaria de Infraesturtura do Governo do Estado da Bahia. Este arquivo possui \~1,5GB de dados com múltiplas pastas e arquivos sobre a pesquisa realizada em 2012. Quando descompactado atinge \~7 GB.
 
 Os 3 arquivos para processamento foram extraídos dos seguintes diretórios do arquivo compactado:
 

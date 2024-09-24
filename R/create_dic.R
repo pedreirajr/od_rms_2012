@@ -99,3 +99,4 @@ if (!dir.exists(output_dir_dics)) {
 
 save(descricao_campos, file = 'data/dics/descricao_campos.rda')
 save(descricao_codigos, file = 'data/dics/descricao_codigos.rda')
+
