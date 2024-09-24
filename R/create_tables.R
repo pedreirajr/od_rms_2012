@@ -15,12 +15,12 @@ if (!dir.exists(output_dir_tables)) {
 }
 
 # Lê as tabelas e as salva em .rda:
-lista_tables <- list()
+tabelas_dados <- list()
 
 for (i in seq_along(tabs_dados)){
   
   # Lê cada tabela de dados
-  lista_tables[[i]] <- readxl::read_excel(path, sheet = tabs_dados[i])
+  tabelas_dados[[i]] <- readxl::read_excel(path, sheet = tabs_dados[i])
   
   # Correção dos valores de horas
   ## Obs.: por algum motivo, as funções para ler planilhas do R (seja do readxl 
@@ -29,9 +29,9 @@ for (i in seq_along(tabs_dados)){
   ## ser texto, no fim das contas). As colunas são HORA_O e HORA_D presentes 
   ## 2 das planilhas.
   ## Esta foi a única solução que consegui dar para resolver o problema:
-  if('HORA_O' %in% colnames(lista_tables[[i]]) |
-     'HORA_D' %in% colnames(lista_tables[[i]])){
-    lista_tables[[i]] <- lista_tables[[i]] %>% 
+  if('HORA_O' %in% colnames(tabelas_dados[[i]]) |
+     'HORA_D' %in% colnames(tabelas_dados[[i]])){
+    tabelas_dados[[i]] <- tabelas_dados[[i]] %>% 
       mutate(HORA_O = ifelse(grepl("\\.", HORA_O),
                              format(as.POSIXct(as.numeric(HORA_O) * 86400, 
                                                origin = "1970-01-01", tz = "UTC"),
@@ -47,9 +47,9 @@ for (i in seq_along(tabs_dados)){
   # configuração da planilha do excel para a tabela "Banco de Viagens 
   # (matriz link)"
   if(i == 6){
-    lista_tables[[i]] <- lista_tables[[i]] %>% select(-c(...27,...28,...29))
+    tabelas_dados[[i]] <- tabelas_dados[[i]] %>% select(-c(...27,...28,...29))
   }
 }
 
 # Salva a lista de tabelas no diretório data/tables:
-save(lista_tables, file = 'data/tables/tabelas_dados.rda')
+save(tabelas_dados, file = 'data/tables/tabelas_dados.rda')
