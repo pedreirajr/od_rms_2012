@@ -20,5 +20,5 @@ sum(zonas_unicas %in% pol_zon$Name) # 217 zonas presentes no arquivo de polígon
 # Confere quantidade de subzonas únicas na base de viagens que existem no arquivo
 # de polígonos
 subzonas_unicas <- union(unique(viagens$ZONAsub_O),unique(viagens$ZONAsub_D))
-length(subzonas_unicas) # 251
+length(subzonas_unicas) # 842
 sum(subzonas_unicas %in% pol_subzon$Name) # 802 subzonas presentes no arquivo de polígonos
