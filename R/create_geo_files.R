@@ -60,6 +60,7 @@ zonas_rms_pol_crs4674 <- zonas_rms_pol_crs4674 %>%
 # com as bases de dados tabulares
 subzonas_rms_pts_crs4674 <- subzonas_rms_pts_crs4674 %>% 
   mutate(Name = gsub("- ?", ".", Name))
+
 subzonas_rms_pol_crs4674 <- subzonas_rms_pol_crs4674 %>% 
   mutate(Name = gsub("- ?", ".", Name))
 
